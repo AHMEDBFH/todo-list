@@ -1,25 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import Form from "./form.js";
 
-function App() {
+const App = () => {
+  const [items] = useState("");
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    items("");
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h1>Todo list</h1>
+      <Form items={items} />
+      {items.localeCompare((items) => {
+        return <itemInput name={items.name} />;
+      })}
     </div>
   );
-}
+};
 
 export default App;
